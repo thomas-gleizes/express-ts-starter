@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import routes from "./routes";
 import errorHandler from "./middlewares/errorHandler";
+import logger from "./middlewares/logger";
 
 const PORT: number | string = process.env.PORT || 8080;
 
@@ -14,6 +15,7 @@ app.use(cors({ origin: "*" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: "5mb" }));
 app.use(express.static("public"));
+app.use(logger)
 app.use("/api", routes);
 app.use(errorHandler);
 
