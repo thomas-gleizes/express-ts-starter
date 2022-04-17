@@ -1,4 +1,8 @@
 {
+  "ts-node": {
+    "files": true
+  },
+  // add this  "ts-node": {  "files": true }, // add this
   "compilerOptions": {
     "outDir": "dist",
     "target": "es5",
@@ -6,7 +10,8 @@
     "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src/"
   },
   "include": [
     "src",

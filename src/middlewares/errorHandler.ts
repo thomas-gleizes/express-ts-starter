@@ -2,6 +2,8 @@ import httpStatus from "http-status";
 import ApiError from "../lib/ApiError";
 
 export default function errorHandler(err, req, res): void {
+  console.log("err", err);
+
   if (err instanceof ApiError)
     return res.status(err.status).json({ message: err.message, data: err.data });
 

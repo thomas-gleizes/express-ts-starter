@@ -1,13 +1,9 @@
-import Controller from "../lib/Controller";
-import ApiError from "../lib/ApiError";
-import { Request as ExpressRequest, Response as ExpressResponse } from "express";
 import httpStatus from "http-status";
 
+import { Request, Response } from "app/types";
+import Controller from "../lib/Controller";
+import ApiError from "../lib/ApiError";
 
-declare type Response<T = {}> = {
-  status: number;
-  data: T;
-}
 
 type Example = {
   id: number;
@@ -18,9 +14,8 @@ type Example = {
 
 export default class ExampleController extends Controller {
 
-  static index(req: ExpressRequest, res: ExpressResponse<{ examples: Example[] }>) {
+  static index(req: Request, res: Response<{ examples: Example[] }>) {
     if (req.query.hasOwnProperty("error")) {
-      console.log("throwing  api error");
       throw new ApiError("throw error", httpStatus.BAD_REQUEST);
     }
 
@@ -40,8 +35,8 @@ export default class ExampleController extends Controller {
     });
   }
 
-  static show(req: ExpressRequest, res: ExpressResponse<{ example: Example }>) {
-    const id = req.params.id;
+  static show(req: Request, res: Response<{ example: Example }>) {
+    const id = +req.params.id;
 
     if (+id <= 0) {
       throw new ApiError("example not found", httpStatus.NOT_FOUND);
@@ -49,7 +44,7 @@ export default class ExampleController extends Controller {
 
     res.status(httpStatus.ACCEPTED).json({
       example: {
-        id: +id,
+        id: id,
         title: `title ${id}`,
         content: `content ${id}`
       }
