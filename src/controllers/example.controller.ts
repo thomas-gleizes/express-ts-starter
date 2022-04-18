@@ -1,37 +1,40 @@
 import httpStatus from "http-status";
 
-import { Request, Response } from "app/types";
+import type { Request, Response } from "app/server";
+import type { Example } from "app/models";
 import Controller from "../lib/Controller";
 import ApiError from "../lib/ApiError";
 
-
-type Example = {
-  id: number;
-  title: string;
-  content: string;
-}
-
-
 export default class ExampleController extends Controller {
-
   static index(req: Request, res: Response<{ examples: Example[] }>) {
-    if (req.query.hasOwnProperty("error")) {
+    if (req.query.hasOwnProperty("error"))
       throw new ApiError("throw error", httpStatus.BAD_REQUEST);
-    }
 
     res.json({
       examples: [
         {
           id: 1,
           title: "example 1",
-          content: "example content 1"
+          description: "description 1",
         },
         {
           id: 2,
           title: "example 2",
-          content: "example content 2"
-        }
-      ]
+          description: "description 2",
+        },
+      ],
+    });
+  }
+
+  static create(req: Request, res: Response<{ example: Example }>) {
+    const { body } = req;
+
+    res.status(201).json({
+      example: {
+        id: 3,
+        title: body.title,
+        description: body.description,
+      },
     });
   }
 
@@ -46,9 +49,8 @@ export default class ExampleController extends Controller {
       example: {
         id: id,
         title: `title ${id}`,
-        content: `content ${id}`
-      }
+        description: `description ${id}`,
+      },
     });
   }
-
-};
+}

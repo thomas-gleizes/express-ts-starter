@@ -1,9 +1,4 @@
-declare type ResponseError<Data = {}> = {
-  message: string
-  data?: Data
-}
-
-declare module "app/types" {
+declare module "app/server" {
   import { Request as ExpressRequest, Response as ExpressResponse } from "express";
 
   declare type Request = ExpressRequest;
