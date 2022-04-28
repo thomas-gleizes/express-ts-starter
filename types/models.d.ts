@@ -1,8 +1,7 @@
 declare module "app/models" {
-  declare type Example = {
+  declare type User = {
     id: number;
-    title: string;
-    description: string;
+    name: string;
+    email: string;
   };
-  declare type Examples = Example[];
 }

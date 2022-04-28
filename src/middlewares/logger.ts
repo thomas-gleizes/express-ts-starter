@@ -1,4 +1,7 @@
+import trace from "utils/trace";
+
 export default function logger(req, res, next) {
-  console.log(`Received: ${req.method} ${req.path}`);
+  trace(req.method + " : " + req.path);
+
   next();
 }
