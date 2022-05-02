@@ -26,10 +26,6 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   trace(`Server start on port: ${PORT}`);
 
-  console.log("Date()", getDate());
-  console.log("Time()", getTime());
-  console.log("GetDateTime()", getDateTime());
-
   console.log(
     "\x1b[32m",
     `======================= Server start on port : ${PORT} =======================`,
