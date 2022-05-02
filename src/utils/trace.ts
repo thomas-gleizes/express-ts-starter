@@ -2,7 +2,7 @@ import fs from "fs";
 import { dirname } from "path";
 import { getDateTime } from "utils/getDate";
 
-const filePath = `${dirname(require.main.filename)}/trace.log`;
+const filePath = `${dirname(require.main.filename)}/../trace.log`;
 
 export default function trace(str: string): void {
   try {
