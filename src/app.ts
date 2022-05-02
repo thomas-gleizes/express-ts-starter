@@ -7,7 +7,6 @@ import trace from "utils/trace";
 import logger from "middlewares/logger";
 import errorHandler from "middlewares/errorHandler";
 import jwtHandler from "middlewares/jwtHandler";
-import { getDate, getDateTime, getTime } from "utils/getDate";
 
 const PORT: number | string = process.env.PORT || 8080;
 

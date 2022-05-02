@@ -1,6 +1,7 @@
 import fs from "fs";
 import { dirname } from "path";
-import { getDateTime } from "utils/getDate";
+
+import { getDateTime } from "utils/date";
 
 const filePath = `${dirname(require.main.filename)}/../trace.log`;
 
