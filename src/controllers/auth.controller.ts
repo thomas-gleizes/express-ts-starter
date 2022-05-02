@@ -1,7 +1,7 @@
 import httpStatus from "http-status";
 
-import type { Request, Response } from "app/server";
-import { User } from "app/models";
+import type { AuthRequest, Request, Response } from "app/server";
+import type { User } from "app/models";
 import ApiError from "lib/ApiError";
 import { createJwt } from "utils/security";
 
@@ -42,12 +42,8 @@ export default class AuthController {
     return res.send({ success: true, jwt, user });
   }
 
-  static showMe(req: Request, res: Response<{ success: true; user: User }>) {
-    const user: User = {
-      id: 0,
-      email: req.body.email,
-      name: "john doe",
-    };
+  static showMe(req: AuthRequest, res: Response<{ success: true; user: User }>) {
+    const user = req.user;
 
     return res.send({ success: true, user });
   }
