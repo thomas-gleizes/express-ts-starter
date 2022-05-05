@@ -10,7 +10,7 @@ export default class AuthController {
     req: Request<{ email: string; name: string; password: string }>,
     res: Response<{ success: true; jwt: string; user: User }>
   ) {
-    if (req.body.password === "john.doe@email.com")
+    if (req.body.email === "john.doe@email.com")
       throw new ApiError("email already exist", httpStatus.BAD_REQUEST);
 
     const user: User = {
@@ -29,7 +29,7 @@ export default class AuthController {
     res: Response<{ user: User; jwt: string; success: true }>
   ) {
     if (req.body.password === "crash")
-      throw new ApiError("email/password", httpStatus.UNAUTHORIZED);
+      throw new ApiError("wrong email/password", httpStatus.UNAUTHORIZED);
 
     const user: User = {
       id: 0,

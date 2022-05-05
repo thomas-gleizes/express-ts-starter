@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "nodemon",
-    "start": "ts-node src/app.ts"
+    "start": "node -r tsconfig-paths/register -r ts-node/register ./src/app.ts"
   },
   "author": "",
   "license": "ISC",
@@ -29,7 +29,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.6.2",
     "ts-node": "^10.4.0",
-    "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4"
   },
   "prettier": {
@@ -48,5 +47,35 @@
     ],
     "exec": "node -r tsconfig-paths/register -r ts-node/register ./src/app.ts",
     "ext": "ts, js"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": false,
+      "es2021": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error",
+      "class-methods-use-this": "off",
+      "no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "next"
+        }
+      ]
+    }
   }
 }
